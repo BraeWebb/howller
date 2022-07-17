@@ -1,7 +1,7 @@
 {
     "name": "Howeller",
-    "description": "Enable easy and accurate exporting of CAHP hours for approval",
-    "version": "1.0",
+    "description": "Easy and accurate exporting of CAHP hours for approval",
+    "version": "0.1",
     "manifest_version": 3,
     "icons": {
         "48": "/images/carp48.png",
