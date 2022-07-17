@@ -1,6 +1,6 @@
 
 // Trigger a reload of the extension if the table changes in any way
-var observer = new MutationObserver((_, _) => {
+var observer = new MutationObserver((changes, observer) => {
     loadExtension();
 })
 var config = { attributes: true, childList: true, subtree: true };
@@ -23,8 +23,8 @@ function loadExtension() {
         var items = optionsToMap(items["data"]);
         var timesheet = loadTimesheet();
 
-        for (var course in timesheet) {
-            createBtn("Send " + course + " changes", (e) => {
+        function btnCallback(course) {
+            return function(e) {
                 var event = e || window.event;
                 event.stopPropagation();
 
@@ -35,7 +35,11 @@ function loadExtension() {
                 }
 
                 sendEmail(items[course], "[" + course + "] Hours", formatEmail(timesheet[course]))
-            });
+            }
+        }
+
+        for (var course in timesheet) {
+            createBtn("Send " + course + " changes", btnCallback(course));
         }    
     });
 }
@@ -131,7 +135,7 @@ function tableToJson(table) {
 
     for (var i = 1; i < table.rows.length; i++) { 
         var row = table.rows[i];
-        
+
         var rowData = {}; 
         for (var j = 0; j < row.cells.length; j++) { 
             rowData[headerRow.cells[j].innerHTML] = row.cells[j].innerHTML;
