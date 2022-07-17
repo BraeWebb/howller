@@ -28,13 +28,20 @@ function loadExtension() {
                 var event = e || window.event;
                 event.stopPropagation();
 
+                var courseTimesheet = timesheet[course];
+
                 if (!(course in items)) {
                     alert("Unable to find a recipient for " + course + ". Please configure the extension options.");
                     chrome.runtime.sendMessage({"action": "openOptionsPage"});
                     return;
                 }
 
-                sendEmail(items[course], "[" + course + "] Hours", formatEmail(timesheet[course]))
+                if (hasDraft(courseTimesheet)) {
+                    alert("Wait! You have draft hours. Please submit your timesheet before emailing the changes");
+                    return;
+                }
+
+                sendEmail(items[course], "[" + course + "] Hours", formatEmail(courseTimesheet))
             }
         }
 
@@ -42,6 +49,17 @@ function loadExtension() {
             createBtn("Send " + course + " changes", btnCallback(course));
         }    
     });
+}
+
+function hasDraft(data) {
+    for (var i = 0; i < data.length; i++) {
+        var row = data[i];
+
+        if (row["Status"] === "DRAFT") {
+            return true;
+        }
+    }
+    return false;
 }
 
 function createBtn(text, onclick) {
