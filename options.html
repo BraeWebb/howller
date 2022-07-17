@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head><title>Howells Bot</title></head>
+<style>
+    table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+}
+table thead tr {
+    background-color: #655f68;
+    color: #ffffff;
+    text-align: left;
+}
+table th,
+table td {
+    padding: 12px 15px;
+}
+table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+table tbody tr:last-of-type {
+    border-bottom: 2px solid #655f68;
+}
+</style>
+<body>
+
+<div style="margin: 0px auto; width: 50%">
+<image src="images/carp128.png" style="float: left" height="128px" />
+<h1 style="margin: auto; height: 128px; font-size: xx-large; color: #655f68; text-align: center; line-height: 128px;">Howells Bot</h1>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Recipient</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- <tr>
+            <td><input value="CSSE1001"></input></td>
+            <td><input value="b.webb@uq.edu.au"></input></td>
+        </tr> -->
+    </tbody>
+</table>
+
+<button id="add-course-btn"
+style="border: 0;
+box-shadow: none;
+background-color: #655f68;
+color: white;
+padding: 10px 20px;
+border-radius: 0px;
+cursor: pointer;
+margin-bottom: 30px;
+"
+>Add Course</button>
+
+<div id="status"></div>
+<button id="save"
+style="border: 0;
+box-shadow: none;
+background-color: #655f68;
+color: white;
+padding: 10px 20px;
+border-radius: 0px;
+cursor: pointer;
+"
+>Save</button>
+
+</div>
+
+<script src="options.js"></script>
+</body>
+</html>

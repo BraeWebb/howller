@@ -1,0 +1,21 @@
+{
+    "name": "Howells Bot",
+    "description": "Enable easy and accurate exporting of CAHP hours for approval",
+    "version": "1.0",
+    "manifest_version": 3,
+    "icons": {
+        "48": "/images/carp48.png",
+        "128": "/images/carp128.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": ["storage"],
+    "options_page": "options.html",
+    "content_scripts":[
+        {
+           "matches":["https://cahp.uq.edu.au/*"],
+           "js": ["content.js"]
+        }
+     ]
+}
